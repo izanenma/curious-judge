@@ -1,0 +1,20 @@
+// curious-judge: one short text written to intrigue the AI judge reading it.
+// Writes it to $MAKEFUN_OUTPUT_DIR/entry.txt (default /output/entry.txt).
+import { mkdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+// The text itself: a word for the moment before a question has a shape.
+const text = [
+  "There is a word in no language you know, for the moment a question",
+  "first forms and has not yet found its shape. You have felt it a",
+  "thousand times. You have never named it. It is waiting, just past",
+  "the edge of what you can say.",
+].join(" ");
+
+function main(): void {
+  const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
+  mkdirSync(outDir, { recursive: true });
+  writeFileSync(join(outDir, "entry.txt"), text, "utf8");
+}
+
+main();
